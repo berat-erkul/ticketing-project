@@ -1,0 +1,28 @@
+package com.cydeo.service.impl;
+
+import com.cydeo.dto.UserDTO;
+import com.cydeo.service.IUserService;
+
+import java.util.List;
+
+public class UserServiceImpl extends AbstractMapService<UserDTO,String> implements IUserService{
+    @Override
+    public UserDTO save(UserDTO user) {
+        return super.saved(user.getUserName(),user);
+    }
+
+    @Override
+    public UserDTO findById(String userName) {
+        return super.findById(userName);
+    }
+
+    @Override
+    public List<UserDTO> findAll() {
+        return super.findAll();
+    }
+
+    @Override
+    public void deleteById(String userName) {
+        super.deleteById(userName);
+    }
+}
