@@ -6,7 +6,7 @@ import org.springframework.stereotype.Controller;
 @Controller
 public class RoleController {
 
-    IRoleService roleService;
+    private final IRoleService roleService;
 
     public RoleController(IRoleService roleService) {
         this.roleService = roleService;
