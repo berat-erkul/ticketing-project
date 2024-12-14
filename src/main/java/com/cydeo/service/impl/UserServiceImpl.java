@@ -8,7 +8,7 @@ import java.util.List;
 public class UserServiceImpl extends AbstractMapService<UserDTO,String> implements IUserService{
     @Override
     public UserDTO save(UserDTO user) {
-        return super.saved(user.getUserName(),user);
+        return super.save(user.getUserName(),user);
     }
 
     @Override

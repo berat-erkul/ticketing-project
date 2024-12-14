@@ -9,7 +9,7 @@ public abstract class AbstractMapService<T,ID> {
 
     public Map<ID,T> map = new HashMap<>();  //Custom DB
 
-    T saved(ID id, T object){
+    T save(ID id, T object){
         return map.put(id,object);
     }
 
