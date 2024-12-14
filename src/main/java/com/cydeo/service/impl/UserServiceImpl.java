@@ -2,9 +2,11 @@ package com.cydeo.service.impl;
 
 import com.cydeo.dto.UserDTO;
 import com.cydeo.service.IUserService;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class UserServiceImpl extends AbstractMapService<UserDTO,String> implements IUserService{
     @Override
     public UserDTO save(UserDTO user) {

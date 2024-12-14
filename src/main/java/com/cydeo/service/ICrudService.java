@@ -10,8 +10,5 @@ public interface ICrudService<T,ID> {
     List<T> findAll();
     void deleteById(ID id);
 
-    //RoleDTO save(RoleDTO role);
-    //RoleDTO findById(Long id);
-    //List<RoleDTO> findAll();
-    //void deleteById(Long id);
+
 }
