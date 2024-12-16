@@ -9,6 +9,5 @@ public interface ICrudService<T,ID> {
     T findById(ID id);
     List<T> findAll();
     void deleteById(ID id);
-
-
+    void update(ID id,T object);
 }
