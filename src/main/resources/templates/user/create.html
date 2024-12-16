@@ -33,7 +33,7 @@
                                 <div class="panel-body">
 
                                     <!-- ------------------------FORM START----------------------------- -->
-                                    <form action="#"  th:object="${user}">
+                                    <form th:action="@{/user/create}" method="post"  th:object="${user}">
                                         <div class="row">
                                             <div class="col-sm-6 col-md-6">
                                                 <div class="form-group">
@@ -98,8 +98,9 @@
                                             <div class="col-sm-6 col-md-6">
                                                 <div class="form-group">
                                                     <label>Choose a Role</label>
-                                                    <select name="role" th:field="*{role}" class="custom-select">
-                                                        <option></option>
+                                                    <select name="role"  th:field="*{role}" class="custom-select">
+                                                        <option th:text="Select" th:value="''" ></option>
+                                                        <option th:each="role : ${roles}" th:text="${role.description}" th:value="${role.id}" ></option>
                                                     </select>
                                                 </div>
                                             </div>
@@ -108,13 +109,13 @@
                                         <div class="row">
                                             <div class="col-sm-6 col-md-6 col-lg-12">
                                                 <div class="float-right">
-                                                    <button type="submit" class="btn btn-success">Save</button>
+                                                    <button class="btn btn-success">Save</button>
                                                 </div>
                                             </div>
                                         </div>
 
                                     </form>
-                                    <!-- ------------------------FORM END---------
+                                    <!-- ------------------------FORM END--------- -->
 
                                 </div>
 
@@ -153,15 +154,15 @@
 
                                             <tbody>
 
-                                            <tr>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
+                                            <tr th:each="theUser: ${users}">
+                                                <td th:text="${theUser.firstName +' '+ theUser.lastName}"></td>
+                                                <td th:text="${theUser.userName}"></td>
+                                                <td th:text="${theUser.gender.getValue()}"></td>
+                                                <td th:text="${theUser.phone}"></td>
+                                                <td th:text="${theUser.role.description}"></td>
                                                 <td class="actions">
-                                                    <a href="#"><button type="button" class="btn btn-warning btn-sm">Update</button></a>
-                                                    <a href="#" class="delete-row"><button type="button" class="btn btn-secondary btn-sm">Delete</button></a>
+                                                    <a th:href="@{/user/update/{username} (username=${theUser.userName})}"><button type="button" class="btn btn-warning btn-sm">Update</button></a>
+                                                    <a th:href="@{/user/delete/{username} (username=${theUser.userName})}" class="delete-row"><button type="button" class="btn btn-secondary btn-sm">Delete</button></a>
                                                 </td>
                                             </tr>
 
