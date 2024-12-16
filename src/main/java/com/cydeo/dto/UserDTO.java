@@ -11,9 +11,9 @@ import lombok.NoArgsConstructor;
 public class UserDTO {
     private String firstName;
     private String lastName;
-    private String userName;
+    private String userName; //keep it unique
     private Gender gender;
     private String phone;
     private String passWord;
-    private RoleDTO role;  //id - discription
+    private RoleDTO role;  //Long id , String description
 }
