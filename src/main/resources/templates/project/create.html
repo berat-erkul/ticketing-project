@@ -31,8 +31,7 @@
 
                                 <div class="panel-body">
 
-                                    <!-- ------------------------FORM START----------------------------- -->
-                                    <form th:object="${project}" method="post" th:action="@{/project/...}">
+                                    <!-- ------------------------FORM START----------------------------- --><form th:action="@{/project/create}" method="post" th:object="${project}"  >
                                         <div class="row">
                                             <div class="col">
                                                 <div class="form-group">
