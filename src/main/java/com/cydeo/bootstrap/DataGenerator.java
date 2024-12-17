@@ -38,7 +38,7 @@ public class DataGenerator implements CommandLineRunner {
 
         //------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-        UserDTO user1 = new UserDTO("Berat", "Erkul", "berat-erkul00", Gender.MALE, "5542340000", "123456", adminRole);
+        UserDTO user1 = new UserDTO("Berat", "Erkul", "berat-erkul00", Gender.MALE, "5542340000", "123456", managerRole);
         UserDTO user2 = new UserDTO("Ayşe", "Yılmaz", "ayse-yilmaz21", Gender.FEMALE, "5051234567", "password123", managerRole);
         UserDTO user3 = new UserDTO("Ali", "Kaya", "ali.kaya", Gender.MALE, "5339876543", "ali12345", employeeRole);
         UserDTO user4 = new UserDTO("Zeynep", "Demir", "zeynep.dmr", Gender.FEMALE, "5364567890", "zeynep2024", adminRole);
