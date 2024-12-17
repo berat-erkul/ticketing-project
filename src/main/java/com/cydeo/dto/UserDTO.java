@@ -11,7 +11,7 @@ import lombok.NoArgsConstructor;
 public class UserDTO {
     private String firstName;
     private String lastName;
-    private String userName; //keep it unique
+    private String userName; //key of the object (keep it unique)
     private Gender gender;
     private String phone;
     private String passWord;
