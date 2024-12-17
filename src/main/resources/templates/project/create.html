@@ -31,7 +31,8 @@
 
                                 <div class="panel-body">
 
-                                    <!-- ------------------------FORM START----------------------------- --><form th:action="@{/project/create}" method="post" th:object="${project}"  >
+                                    <!-- ------------------------FORM START----------------------------- -->
+                                    <form th:action="@{/project/create}" method="post" th:object="${project}"  >
                                         <div class="row">
                                             <div class="col">
                                                 <div class="form-group">
@@ -131,7 +132,7 @@
                                                 <td th:text="${theProject.projectName}"></td>
                                                 <td th:text="${#temporals.format(theProject.startDate, 'MM.dd.yyyy') + '-' +#temporals.format(theProject.endDate, 'MM.dd.yyyy') }"></td>
                                                 <td th:text="${theProject.assignedManager.firstName +' '+theProject.assignedManager.lastName }"></td>
-                                                <td th:text="${theProject.projectStatus.getValue()}"></td>
+                                                <td th:text="${theProject.projectStatus.value}"></td>
                                                 <td>
                                                     <a href="#"><button type="button" class="btn btn-warning rounded-0">Update</button></a>
                                                     <a href="#"><button type="button" class="btn btn-danger rounded-0">Delete</button></a>

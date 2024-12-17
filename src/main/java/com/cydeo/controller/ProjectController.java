@@ -27,13 +27,13 @@ public class ProjectController {
         model.addAttribute("project", new ProjectDTO());
         model.addAttribute("projects", projectService.findAll());
         model.addAttribute("managers",userService.findManagers());
-        return "project/create";
+        return "/project/create";
     }
 
     @PostMapping("/create")
     public String insertProject(@ModelAttribute("project")ProjectDTO project){
         projectService.save(project);
-        return "redirect:project/create";
+        return "redirect:/project/create";
     }
 
 }
