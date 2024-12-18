@@ -7,10 +7,7 @@ import com.cydeo.service.IUserService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 @RequestMapping("/task")
@@ -39,6 +36,12 @@ public class TaskController {
     @PostMapping("/create")
     public String insertTask(@ModelAttribute("task")TaskDTO task){
         taskService.save(task);
+        return "redirect:/task/create";
+    }
+
+    @GetMapping("/delete/{id}")
+    public String deleteTask(@PathVariable("id") Long id){
+        taskService.deleteById(id);
         return "redirect:/task/create";
     }
 
