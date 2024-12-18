@@ -7,5 +7,5 @@ import java.util.List;
 public interface IUserService extends ICrudService<UserDTO,String>{
 
     List<UserDTO> findManagers();
-
+    List<UserDTO> findEmployees();
 }

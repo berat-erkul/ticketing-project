@@ -2,11 +2,13 @@ package com.cydeo.bootstrap;
 
 import com.cydeo.dto.ProjectDTO;
 import com.cydeo.dto.RoleDTO;
+import com.cydeo.dto.TaskDTO;
 import com.cydeo.dto.UserDTO;
 import com.cydeo.enums.Gender;
 import com.cydeo.enums.Status;
 import com.cydeo.service.IProjectService;
 import com.cydeo.service.IRoleService;
+import com.cydeo.service.ITaskService;
 import com.cydeo.service.IUserService;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
@@ -19,11 +21,13 @@ public class DataGenerator implements CommandLineRunner {
     private final IRoleService roleService;
     private final IUserService userService;
     private final IProjectService projectService;
+    private final ITaskService taskService;
 
-    public DataGenerator(IRoleService roleService, IUserService userService, IProjectService projectService) {
+    public DataGenerator(IRoleService roleService, IUserService userService, IProjectService projectService, ITaskService taskService) {
         this.roleService = roleService;
         this.userService = userService;
         this.projectService = projectService;
+        this.taskService = taskService;
     }
 
     @Override
@@ -65,6 +69,19 @@ public class DataGenerator implements CommandLineRunner {
         projectService.save(project1);
         projectService.save(project2);
         projectService.save(project3);
+
+        //------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+        TaskDTO task1 = new TaskDTO(1L, project1, user1, "Task 1 Subject", "Task 1 Detail", LocalDate.now(), Status.IN_PROGRESS);
+        TaskDTO task2 = new TaskDTO(2L, project2, user2, "Task 2 Subject", "Task 2 Detail", LocalDate.now(), Status.IN_PROGRESS);
+        TaskDTO task3 = new TaskDTO(3L, project3, user8, "Task 3 Subject", "Task 3 Detail", LocalDate.now(), Status.IN_PROGRESS);
+
+        taskService.save(task1);
+        taskService.save(task2);
+        taskService.save(task3);
+
+
+
     }
 
 
