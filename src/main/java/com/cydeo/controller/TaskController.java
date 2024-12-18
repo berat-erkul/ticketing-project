@@ -45,4 +45,12 @@ public class TaskController {
         return "redirect:/task/create";
     }
 
+    @GetMapping("/update/{id}")
+    public String updateTask(@PathVariable("id") Long id, Model model){
+        model.addAttribute("task",taskService.findById(id));
+        model.addAttribute("projects",projectService.findAll());
+        model.addAttribute("employees",userService.findEmployees());
+        model.addAttribute("tasks",taskService.findAll());
+        return "task/update";
+    }
 }
