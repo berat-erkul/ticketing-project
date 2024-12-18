@@ -56,8 +56,20 @@ public class TaskController {
 
     @PostMapping("/update/{id}")
     public String updateTask(@ModelAttribute("task")TaskDTO task,@PathVariable("id") Long id, Model model){
-        task.setId(id);
+        task.setId(id);       //This point was important!!!
         taskService.update(id,task);
         return "redirect:/task/create";
     }
+
+//    @PostMapping("/update/{id}")
+//    public String updateTask(@ModelAttribute("task")TaskDTO task){
+//
+//        taskService.update(task);
+//
+//        return "redirect:/task/create";
+//    }
+    //We can also design like that -> Spring understand what are we doing. -There is a Path variable
+    //                                                                     -There is a ModelAttribute
+    //                                                                     -ModelAttribute has path variable as a field
+    //Everything is clear for Spring
 }
