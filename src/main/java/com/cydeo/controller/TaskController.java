@@ -56,6 +56,7 @@ public class TaskController {
 
     @PostMapping("/update/{id}")
     public String updateTask(@ModelAttribute("task")TaskDTO task,@PathVariable("id") Long id, Model model){
+        task.setId(id);
         taskService.update(id,task);
         return "redirect:/task/create";
     }
