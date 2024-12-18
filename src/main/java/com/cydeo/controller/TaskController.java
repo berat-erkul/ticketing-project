@@ -36,6 +36,10 @@ public class TaskController {
         return "task/create";
     }
 
-
+    @PostMapping("/create")
+    public String insertTask(@ModelAttribute("task")TaskDTO task){
+        taskService.save(task);
+        return "redirect:/task/create";
+    }
 
 }
