@@ -64,13 +64,16 @@ public class TaskController {
 
 
     @GetMapping("/employee/pending-tasks")
-    public String employeePEndingTasks(Model model){
-
+    public String employeePendingTasks(Model model){
         model.addAttribute("tasks",taskService.findAllTaskByStatusNot(Status.COMPLETED));
-
         return "task/pending-tasks";
     }
 
+    @GetMapping("/employee/archive")
+    public String employeeArchiveTasks(Model model){
+        model.addAttribute("tasks",taskService.findAllTaskByStatus(Status.COMPLETED));
+        return "task/archive";
+    }
 
 
 //    @PostMapping("/update/{id}")
