@@ -1,6 +1,7 @@
 package com.cydeo.controller;
 
 import com.cydeo.dto.ProjectDTO;
+import com.cydeo.dto.UserDTO;
 import com.cydeo.enums.Status;
 import com.cydeo.service.impl.ProjectServiceImpl;
 import com.cydeo.service.impl.UserServiceImpl;
@@ -62,7 +63,8 @@ public class ProjectController {
 
     @GetMapping("/manager/project-status")
     public String getProjectByManager(Model model){
-        model.addAttribute("projects",projectService.findAll());
+        UserDTO manager = userService.findById("berat-erkul00");
+        model.addAttribute("projects",projectService.getCountedListOfProjectDTO(manager));
         return "manager/project-status";
     }
 }
