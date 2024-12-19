@@ -82,6 +82,15 @@ public class TaskController {
         return "task/status-update";
     }
 
+    @PostMapping("/employee/update/{id}")
+    public String employeeUpdateTask(@ModelAttribute("task") TaskDTO task, @PathVariable Long id){
+
+        taskService.updateStatus(id,task);
+
+        return "redirect:/task/employee/pending-tasks";
+    }
+
+
 //    @PostMapping("/update/{id}")
 //    public String updateTask(@ModelAttribute("task")TaskDTO task){
 //

@@ -8,4 +8,6 @@ import java.util.List;
 public interface ITaskService extends ICrudService<TaskDTO,Long>{
     List<TaskDTO> findAllTaskByStatusNot(Status status);
     List<TaskDTO> findAllTaskByStatus(Status status);
+
+    void updateStatus(Long id, TaskDTO task);
 }
