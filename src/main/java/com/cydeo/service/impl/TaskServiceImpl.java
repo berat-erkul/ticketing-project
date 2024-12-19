@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 @Service
 public class TaskServiceImpl extends AbstractMapService<TaskDTO,Long> implements ITaskService {
@@ -42,6 +43,13 @@ public class TaskServiceImpl extends AbstractMapService<TaskDTO,Long> implements
         task.setTaskStatus(foundTask.getTaskStatus());
         task.setAssignedDate(foundTask.getAssignedDate());
         super.update(id, task);
+    }
+
+    @Override
+    public List<TaskDTO> findAllTaskByStatusNot(Status status) {
+        return findAll().stream()
+                .filter(task -> task.getTaskStatus() != status)
+                .collect(Collectors.toList());
     }
 }
 
