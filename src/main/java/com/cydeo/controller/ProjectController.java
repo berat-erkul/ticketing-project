@@ -1,6 +1,7 @@
 package com.cydeo.controller;
 
 import com.cydeo.dto.ProjectDTO;
+import com.cydeo.dto.UserDTO;
 import com.cydeo.enums.Status;
 import com.cydeo.service.impl.ProjectServiceImpl;
 import com.cydeo.service.impl.UserServiceImpl;
@@ -59,4 +60,19 @@ public class ProjectController {
         projectService.complete(projectCode);
         return "redirect:/project/create";
     }
+
+    @GetMapping("/manager/project-status")
+    public String getProjectByManager(Model model){
+        UserDTO manager = userService.findById("john@cydeo.com");
+        model.addAttribute("projects",projectService.getCountedListOfProjectDTO(manager));
+        return "manager/project-status";
+    }
+
+    @GetMapping("/manager/complete/{projectCode}")
+    public String managerCompleteProject(@PathVariable("projectCode") String projectCode){
+        projectService.complete(projectCode);
+        return "redirect:/project/manager/project-status";
+    }
+
+
 }

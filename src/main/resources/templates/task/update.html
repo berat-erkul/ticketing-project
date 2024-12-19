@@ -52,8 +52,8 @@
                                             <div class="col">
                                                 <div class="form-group">
                                                     <label>Assigned Employee</label>
-                                                    <select name="assignedemployee" class="custom-select"
-                                                            th:field="*{assignedEmployee}">
+                                                    <select name="assignedemployee" class="custom-select" th:field="*{assignedEmployee}">
+                                                        <option  th:value="${task.getAssignedEmployee().userName}" th:text="${task.getAssignedEmployee().firstName +' '+task.getAssignedEmployee().lastName}"> </option>
                                                         <option th:each="employee : ${employees}"
                                                                 th:value="${employee.userName}"
                                                                 th:text="${employee.firstName + ' ' + employee.lastName}"></option>
