@@ -38,6 +38,12 @@
                                                 <div class="form-group">
                                                     <label for="projectname" class="col-form-label">Project Name</label>
                                                     <input id="projectname" th:field="*{projectName}" type="text" class="form-control" placeholder="project name">
+                                                    <div class="invalid-feedback" th:if="${#fields.hasErrors('projectName')}">
+                                                        <ul>
+                                                            <li th:each="err : ${#fields.errors('projectName')}"
+                                                                th:text="${err}"></li>
+                                                        </ul>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
@@ -46,6 +52,12 @@
                                                 <div class="form-group">
                                                     <label for="projectcode" class="col-form-label">Project Code</label>
                                                     <input id="projectcode" th:field="*{projectCode}"  type="text" class="form-control" readonly placeholder="project code">
+                                                    <div class="invalid-feedback" th:if="${#fields.hasErrors('projectCode')}">
+                                                        <ul>
+                                                            <li th:each="err : ${#fields.errors('projectCode')}"
+                                                                th:text="${err}"></li>
+                                                        </ul>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
@@ -57,6 +69,12 @@
                                                         <option th:each="manager : ${managers}" th:value="${manager.userName}"
                                                                 th:text = "${manager.firstName + ' ' + manager.lastName}"></option>
                                                     </select>
+                                                    <div class="invalid-feedback" th:if="${#fields.hasErrors('assignedManager')}">
+                                                        <ul>
+                                                            <li th:each="err : ${#fields.errors('assignedManager')}"
+                                                                th:text="${err}"></li>
+                                                        </ul>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>

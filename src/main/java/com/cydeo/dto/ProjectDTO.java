@@ -13,7 +13,7 @@ import java.time.LocalDate;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class ProjectDTO {
+public class ProjectDTO { 
 
     @NotBlank(message = "Project Name is a required field")
     private String projectName;
