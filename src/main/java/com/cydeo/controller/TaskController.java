@@ -5,9 +5,11 @@ import com.cydeo.enums.Status;
 import com.cydeo.service.IProjectService;
 import com.cydeo.service.ITaskService;
 import com.cydeo.service.IUserService;
+import jakarta.validation.Valid;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 @Controller
@@ -35,8 +37,19 @@ public class TaskController {
     }
 
     @PostMapping("/create")
-    public String insertTask(@ModelAttribute("task") TaskDTO task) {
+    public String insertTask(@Valid @ModelAttribute("task") TaskDTO task, BindingResult bindingResult, Model model) {
+
+        if (bindingResult.hasErrors()) {
+
+            model.addAttribute("projects", projectService.findAll());
+            model.addAttribute("employees", userService.findEmployees());
+            model.addAttribute("tasks", taskService.findAll());
+
+            return "task/create";
+        }
+
         taskService.save(task);
+
         return "redirect:/task/create";
     }
 
@@ -56,9 +69,19 @@ public class TaskController {
     }
 
     @PostMapping("/update/{id}")
-    public String updateTask(@ModelAttribute("task") TaskDTO task, @PathVariable("id") Long id, Model model) {
-        task.setId(id);       //This point was important!!!
-        taskService.update(id, task);
+    public String updateTask(@Valid @ModelAttribute("task") TaskDTO task, BindingResult bindingResult, Model model){
+
+        if (bindingResult.hasErrors()) {
+
+            model.addAttribute("projects", projectService.findAll());
+            model.addAttribute("employees", userService.findEmployees());
+            model.addAttribute("tasks", taskService.findAll());
+
+            return "task/update";
+        }
+
+        taskService.update(task.getId(),task);
+
         return "redirect:/task/create";
     }
 
@@ -83,9 +106,17 @@ public class TaskController {
     }
 
     @PostMapping("/employee/update/{id}")
-    public String employeeUpdateTask(@ModelAttribute("task") TaskDTO task, @PathVariable Long id){
+    public String employeeUpdateTask(@Valid @ModelAttribute("task") TaskDTO task, BindingResult bindingResult, Model model){
 
-        taskService.updateStatus(id,task);
+        if (bindingResult.hasErrors()) {
+
+            model.addAttribute("statuses", Status.values());
+            model.addAttribute("tasks", taskService.findAllTaskByStatusNot(Status.COMPLETED));
+
+            return "task/status-update";
+        }
+
+        taskService.updateStatus(task.getId(),task);
 
         return "redirect:/task/employee/pending-tasks";
     }

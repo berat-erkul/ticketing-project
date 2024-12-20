@@ -68,7 +68,7 @@
                                                     <select name="assignedmanager" th:field="*{assignedManager}" class="custom-select">
                                                         <option th:text="Select" th:value="''"></option>
                                                         <option th:each="manager: ${managers}" th:text="${manager.firstName + ' ' + manager.lastName}"
-                                                                th:value="${manager.userName}"></option>
+                                                        th:value="${manager.userName}"></option>
                                                     </select>
                                                     <div class="invalid-feedback" th:if="${#fields.hasErrors('assignedManager')}">
                                                         <ul>
