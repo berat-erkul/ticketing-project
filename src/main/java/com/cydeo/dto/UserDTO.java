@@ -7,34 +7,65 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
-@AllArgsConstructor
 @NoArgsConstructor
+@AllArgsConstructor
 public class UserDTO {
 
-    @NotBlank
-    @Size(max = 15, min = 3)
+    // @NotBlank => field should not be null, "" or "  "
+    // @NotEmpty => field should not be null, "" or empty collection
+    // @NotNull => field should not be null
+
+    @NotBlank(message = "First Name is a required field")
+    @Size(max = 15, min = 2, message = "First Name must be between 2 and 15 characters long")
     private String firstName;
 
-    @NotBlank
-    @Size(max = 15, min = 3)
+    @NotBlank(message = "Last Name is a required field")
+    @Size(max = 15, min = 2, message = "Last Name must be between 2 and 15 characters long")
     private String lastName;
 
-    @NotBlank
-    @Email
-    private String userName; //key of the object (keep it unique)
+    @NotBlank(message = "Email is a required field")
+    @Email(message = "Email must be in a valid email format")
+    private String userName;
 
-    @NotNull
-    private Gender gender;
-
-    @NotBlank
-    @Pattern(regexp = "\\d{3}-\\d{3}-\\d{2}-\\d{2}")
+    @NotBlank(message = "Phone Number is a required field")
+    @Pattern(regexp = "^\\d{10}$", message = "Phone Number should be 10 characters long, and can only " +
+            "include digits")
     private String phone;
 
-    @NotBlank
-    @Pattern(regexp = "^(?=.*[A-Z])(?=.*[a-z])(?=.*\\d)(?=.*[@#$%^&+=!])(?=\\S+$).{8,}$",
-            message = "Password must be at least 8 characters long, include uppercase, lowercase, a digit, and a special character.")
-    private String password;
+    @NotBlank(message = "Password is a required field")
+    @Pattern(regexp = "(?=.*\\d)(?=.*[a-z])(?=.*[A-Z]).{4,}", message = "The password must be at " +
+            "least 4 characters long and include at least 1 uppercase letter, 1 lowercase letter " +
+            "and 1 digit")
+    private String passWord;
 
-    @NotNull
-    private RoleDTO role;  //Long id , String description
+    @NotBlank(message = "Passwords should match")
+    private String confirmPassWord;
+
+    @NotNull(message = "Please select a Gender")
+    private Gender gender;
+
+    @NotNull(message = "Please select a Role")
+    private RoleDTO role;
+
+
+    public void setPassWord(String passWord) {
+        this.passWord = passWord;
+        checkConfirmPassword();
+    }
+
+    public void setConfirmPassWord(String confirmPassWord) {
+        this.confirmPassWord = confirmPassWord;
+        checkConfirmPassword();
+    }
+
+    private void checkConfirmPassword(){
+        if (passWord == null || confirmPassWord == null) return;
+
+        else if (!passWord.equals(confirmPassWord)) {
+
+            confirmPassWord = null;
+        }
+
+    }
+
 }
