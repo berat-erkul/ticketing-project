@@ -3,8 +3,10 @@ package com.cydeo.controller;
 import com.cydeo.dto.UserDTO;
 import com.cydeo.service.IRoleService;
 import com.cydeo.service.IUserService;
+import jakarta.validation.Valid;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 @Controller
@@ -33,7 +35,12 @@ public class UserController {
     }
 
     @PostMapping("/create")
-    public String saveUser(@ModelAttribute("user") UserDTO user, Model model) {
+    public String insertUser(@Valid @ModelAttribute("user") UserDTO user, BindingResult result, Model model) {
+        if (result.hasErrors()) {
+            model.addAttribute("roles", roleService.findAll());
+            model.addAttribute("users", userService.findAll());
+            return "user/create";
+        }
         userService.save(user);
         return "redirect:/user/create";
     }
@@ -51,7 +58,12 @@ public class UserController {
     }
 
     @PostMapping("/update")
-    public String updateUser(@ModelAttribute("user") UserDTO user, Model model) {
+    public String updateUser(@Valid @ModelAttribute("user") UserDTO user, BindingResult result, Model model) {
+        if (result.hasErrors()){
+            model.addAttribute("roles", roleService.findAll());
+            model.addAttribute("users", userService.findAll());
+            return "user/update";
+        }
         userService.update(user.getUserName(), user);
         return "redirect:/user/create";
     }

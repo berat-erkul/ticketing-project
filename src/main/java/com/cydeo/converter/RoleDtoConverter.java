@@ -1,23 +1,28 @@
 package com.cydeo.converter;
 
 import com.cydeo.dto.RoleDTO;
-import com.cydeo.service.IRoleService;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;
+import com.cydeo.service.IRoleService;
 
 @Component
-public class RoleDtoConverter implements Converter<String,RoleDTO> {
+public class RoleDtoConverter implements Converter<String, RoleDTO> {
 
-    IRoleService roleService;
+    // "1" ==> RoleDTO
+
+    private final IRoleService roleService;
 
     public RoleDtoConverter(IRoleService roleService) {
         this.roleService = roleService;
     }
 
-
     @Override
-    public RoleDTO convert(String source) {
+    public RoleDTO convert(String source) {  // "1" ==> 1
+
+        if (source.isEmpty()){
+            return null;
+        }
+
         return roleService.findById(Long.parseLong(source));
     }
-
 }
