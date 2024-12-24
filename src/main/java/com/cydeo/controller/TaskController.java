@@ -40,16 +40,13 @@ public class TaskController {
     public String insertTask(@Valid @ModelAttribute("task") TaskDTO task, BindingResult bindingResult, Model model) {
 
         if (bindingResult.hasErrors()) {
-
             model.addAttribute("projects", projectService.findAll());
             model.addAttribute("employees", userService.findEmployees());
             model.addAttribute("tasks", taskService.findAll());
-
             return "task/create";
         }
 
         taskService.save(task);
-
         return "redirect:/task/create";
     }
 
@@ -76,12 +73,9 @@ public class TaskController {
             model.addAttribute("projects", projectService.findAll());
             model.addAttribute("employees", userService.findEmployees());
             model.addAttribute("tasks", taskService.findAll());
-
             return "task/update";
         }
-
         taskService.update(task.getId(),task);
-
         return "redirect:/task/create";
     }
 
@@ -109,15 +103,12 @@ public class TaskController {
     public String employeeUpdateTask(@Valid @ModelAttribute("task") TaskDTO task, BindingResult bindingResult, Model model){
 
         if (bindingResult.hasErrors()) {
-
             model.addAttribute("statuses", Status.values());
             model.addAttribute("tasks", taskService.findAllTaskByStatusNot(Status.COMPLETED));
-
             return "task/status-update";
         }
 
         taskService.updateStatus(task.getId(),task);
-
         return "redirect:/task/employee/pending-tasks";
     }
 
