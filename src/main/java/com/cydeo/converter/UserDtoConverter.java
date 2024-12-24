@@ -14,7 +14,6 @@ public class UserDtoConverter implements Converter<String, UserDTO> {
         this.userService = userService;
     }
 
-
     @Override
     public UserDTO convert(String source) {
         return userService.findById(source);

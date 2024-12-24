@@ -2,7 +2,6 @@ package com.cydeo.service;
 
 import com.cydeo.dto.ProjectDTO;
 import com.cydeo.dto.UserDTO;
-import org.apache.catalina.User;
 
 import java.util.List;
 

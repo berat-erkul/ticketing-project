@@ -11,10 +11,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class UserDTO {
 
-    // @NotBlank => field should not be null, "" or "  "
-    // @NotEmpty => field should not be null, "" or empty collection
-    // @NotNull => field should not be null
-
     @NotBlank(message = "First Name is a required field")
     @Size(max = 15, min = 2, message = "First Name must be between 2 and 15 characters long")
     private String firstName;
@@ -47,7 +43,6 @@ public class UserDTO {
     @NotNull(message = "Please select a Role")
     private RoleDTO role;
 
-
     public void setPassWord(String passWord) {
         this.passWord = passWord;
         checkConfirmPassword();
@@ -62,7 +57,6 @@ public class UserDTO {
         if (passWord == null || confirmPassWord == null) return;
 
         else if (!passWord.equals(confirmPassWord)) {
-
             confirmPassWord = null;
         }
 

@@ -5,11 +5,10 @@ import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;
 import com.cydeo.service.IRoleService;
 
-@Component
+@Component                                     //  "1" ==> RoleDTO
 public class RoleDtoConverter implements Converter<String, RoleDTO> {
 
     // "1" ==> RoleDTO
-
     private final IRoleService roleService;
 
     public RoleDtoConverter(IRoleService roleService) {
@@ -22,7 +21,6 @@ public class RoleDtoConverter implements Converter<String, RoleDTO> {
         if (source.isEmpty()){
             return null;
         }
-
         return roleService.findById(Long.parseLong(source));
     }
 }

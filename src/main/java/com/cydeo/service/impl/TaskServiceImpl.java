@@ -3,7 +3,6 @@ package com.cydeo.service.impl;
 import com.cydeo.dto.TaskDTO;
 import com.cydeo.enums.Status;
 import com.cydeo.service.ITaskService;
-import org.springframework.scheduling.config.Task;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
